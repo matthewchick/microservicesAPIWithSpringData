@@ -1,7 +1,9 @@
 package com.matthew.eventmanagementapi.entities;
 
+import javax.persistence.*;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.Set;
 
 public class Event extends AbstractEntity {
     private String name;
@@ -10,7 +12,14 @@ public class Event extends AbstractEntity {
     private ZonedDateTime endTime;
     private ZoneId zoneId;
     private Boolean started;
-    private Organizer organizer;
+    @OneToMany(fetch= FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Particpant> particpant;  //One particpant has many unique events
+    @ManyToOne(fetch= FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(nullable = false)
+    private Organizer organizer;   //set relation 1: M -> organizer : events
+    @ManyToOne(fetch= FetchType.EAGER, cascade = CascadeType.ALL)
+
+    private Venue venue;
 
     public String getName() {
         return name;
@@ -58,5 +67,29 @@ public class Event extends AbstractEntity {
 
     public void setStarted(Boolean started) {
         this.started = started;
+    }
+
+    public Organizer getOrganizer() {
+        return organizer;
+    }
+
+    public void setOrganizer(Organizer organizer) {
+        this.organizer = organizer;
+    }
+
+    public Set<Particpant> getParticpant() {
+        return particpant;
+    }
+
+    public void setParticpant(Set<Particpant> particpant) {
+        this.particpant = particpant;
+    }
+
+    public Venue getVenue() {
+        return venue;
+    }
+
+    public void setVenue(Venue venue) {
+        this.venue = venue;
     }
 }

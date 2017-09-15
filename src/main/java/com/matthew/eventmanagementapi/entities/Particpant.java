@@ -4,6 +4,7 @@ public class Particpant extends AbstractEntity{
     private String name;
     private String email;
     private Boolean checkedIn;
+    private Event event;
 
     public String getName() {
         return name;
@@ -27,5 +28,13 @@ public class Particpant extends AbstractEntity{
 
     public void setCheckedIn(Boolean checkedIn) {
         this.checkedIn = checkedIn;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
     }
 }
