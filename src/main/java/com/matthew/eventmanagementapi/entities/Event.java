@@ -3,22 +3,25 @@ package com.matthew.eventmanagementapi.entities;
 import javax.persistence.*;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.Objects;
 import java.util.Set;
 
 public class Event extends AbstractEntity {
+
     private String name;
     private String description;
     private ZonedDateTime startTime;
     private ZonedDateTime endTime;
     private ZoneId zoneId;
     private Boolean started;
-    @OneToMany(fetch= FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "event", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Particpant> particpant;  //One particpant has many unique events
+
     @ManyToOne(fetch= FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(nullable = false)
     private Organizer organizer;   //set relation 1: M -> organizer : events
-    @ManyToOne(fetch= FetchType.EAGER, cascade = CascadeType.ALL)
 
+    @ManyToOne(fetch= FetchType.EAGER, cascade = CascadeType.ALL)
     private Venue venue;
 
     public String getName() {
@@ -91,5 +94,15 @@ public class Event extends AbstractEntity {
 
     public void setVenue(Venue venue) {
         this.venue = venue;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return Objects.equals(id, ((Event) obj).id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

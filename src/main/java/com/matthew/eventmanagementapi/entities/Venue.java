@@ -1,5 +1,7 @@
 package com.matthew.eventmanagementapi.entities;
 
+import java.util.Objects;
+
 public class Venue extends AbstractEntity {
     private String name;
     private String streetAddress;
@@ -63,5 +65,16 @@ public class Venue extends AbstractEntity {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        return Objects.equals(id, ((Venue) obj).id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
