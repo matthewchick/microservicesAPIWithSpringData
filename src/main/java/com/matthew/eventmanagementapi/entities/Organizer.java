@@ -1,9 +1,11 @@
 package com.matthew.eventmanagementapi.entities;
 
+import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.Objects;
 import java.util.Set;
 
+@Entity
 public class Organizer extends AbstractEntity {
     private String name;
     // set association - one organizer has many unique events

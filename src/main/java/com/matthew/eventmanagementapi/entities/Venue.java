@@ -1,7 +1,9 @@
 package com.matthew.eventmanagementapi.entities;
 
+import javax.persistence.Entity;
 import java.util.Objects;
 
+@Entity
 public class Venue extends AbstractEntity {
     private String name;
     private String streetAddress;

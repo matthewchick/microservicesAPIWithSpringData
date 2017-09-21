@@ -6,6 +6,7 @@ import java.time.ZonedDateTime;
 import java.util.Objects;
 import java.util.Set;
 
+@Entity
 public class Event extends AbstractEntity {
 
     private String name;
@@ -17,7 +18,7 @@ public class Event extends AbstractEntity {
     @OneToMany(mappedBy = "event", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Particpant> particpant;  //One particpant has many unique events
 
-    @ManyToOne(fetch= FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch= FetchType.EAGER)
     @JoinColumn(nullable = false)
     private Organizer organizer;   //set relation 1: M -> organizer : events
 

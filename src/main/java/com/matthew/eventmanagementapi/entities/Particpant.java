@@ -3,6 +3,7 @@ package com.matthew.eventmanagementapi.entities;
 import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
 public class Particpant extends AbstractEntity{
 
     @Column(nullable = false)
